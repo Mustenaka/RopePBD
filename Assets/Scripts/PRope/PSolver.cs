@@ -1,4 +1,5 @@
-﻿using PRope;
+﻿using System.Collections.Generic;
+using PRope;
 using UnityEngine;
 
 /// <summary>
@@ -6,10 +7,13 @@ using UnityEngine;
 /// </summary>
 public class PSolver : MonoBehaviour
 {
+    // particle 
+    public List<GameObject> particles;
+
     // rope generate
     public int particleCount = 128;
     private RopeGenerate _generate;
-    
+
     // simlator param
     private PSimulator _ropeSimulator;
     public float dt = 0.001f;
@@ -18,8 +22,14 @@ public class PSolver : MonoBehaviour
 
     private void Awake()
     {
-        
+        _generate = new RopeGenerate(this.transform, particleCount);
         _ropeSimulator = new PSimulator();
+    }
+
+    private void Start()
+    {
+        particles = _generate.Generate();
+        _ropeSimulator.nowPositions = _generate.GetPositions();
     }
 
     private void Update()
@@ -30,7 +40,7 @@ public class PSolver : MonoBehaviour
         for (int i = 0; i < cnt; i++)
         {
             _ropeSimulator.Step(dt);
-            
+
             // prepare for next 
             if (i < cnt - 1)
             {
