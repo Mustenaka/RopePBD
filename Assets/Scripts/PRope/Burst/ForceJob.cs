@@ -32,7 +32,7 @@ namespace PRope.Burst
         public void Execute(int index)
         {
             // final force
-            float3 force = gravity + globalForce + localForce[index];
+            var force = gravity + globalForce + localForce[index];
             nextPositions[index] = nowPositions[index] +
                                    (1 - damping) * (nowPositions[index] - prevPositions[index]) +
                                    force / mass[index] * (dt * dt) * iterator;

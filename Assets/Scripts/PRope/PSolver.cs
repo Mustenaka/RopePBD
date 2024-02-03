@@ -29,7 +29,11 @@ public class PSolver : MonoBehaviour
     private void Start()
     {
         particles = _generate.Generate();
+        
+        _ropeSimulator.originPositions = _generate.GetPositions();
+        _ropeSimulator.prevPositions = _generate.GetPositions();
         _ropeSimulator.nowPositions = _generate.GetPositions();
+        _ropeSimulator.nextPositions = _generate.GetPositions();
     }
 
     private void Update()
