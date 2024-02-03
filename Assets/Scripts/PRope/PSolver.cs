@@ -39,15 +39,28 @@ public class PSolver : MonoBehaviour
 
         for (int i = 0; i < cnt; i++)
         {
-            _ropeSimulator.Step(dt);
-
-            // prepare for next 
-            if (i < cnt - 1)
+            if (_ropeSimulator != null)
             {
-                _ropeSimulator.ComplateJob();
+                _ropeSimulator.Step(dt);
+
+                // prepare for next 
+                if (i < cnt - 1)
+                {
+                    _ropeSimulator.ComplateJob();
+                }
             }
         }
 
         accTime %= dt;
+    }
+
+    private void LateUpdate()
+    {
+        // last frame
+        if (_ropeSimulator != null)
+        {
+            _ropeSimulator.ComplateJob();
+            // TODO: Render
+        }
     }
 }
