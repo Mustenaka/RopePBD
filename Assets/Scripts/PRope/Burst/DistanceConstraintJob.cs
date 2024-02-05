@@ -10,8 +10,16 @@ namespace PRope.Burst
     {
         public int l;
         public int r;
+        public float offset;
+
+        public DistanceInfo(int l, int r, float offset)
+        {
+            this.l = l;
+            this.r = r;
+            this.offset = offset;
+        }
     }
-    
+
     /// <summary>
     /// correct nextPosition by distance constraint
     /// </summary>
@@ -22,11 +30,11 @@ namespace PRope.Burst
 
         [ReadOnly] public float restLength;
         [ReadOnly] public float stiffness;
-        
+
         public void Execute(int index)
         {
             var con = infos[index];
-            
+
             var delta = nextPositions[con.l] - nextPositions[con.r];
             float currentDistance = math.length(delta);
             float error = currentDistance - restLength;
@@ -35,7 +43,7 @@ namespace PRope.Burst
             {
                 // correct offset
                 float3 correction = math.normalize(delta) * (error * stiffness);
-                
+
                 // apply
                 nextPositions[con.l] -= correction;
                 nextPositions[con.r] += correction;
