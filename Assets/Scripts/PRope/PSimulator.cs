@@ -1,4 +1,5 @@
 ﻿using Unity.Collections;
+using Unity.Jobs;
 using Unity.Mathematics;
 
 namespace PRope
@@ -22,7 +23,22 @@ namespace PRope
         public int iterator;
         public float damping;
         public float stiffness;
-    
+
+        public JobHandle DoPrepareJob()
+        {
+            
+        }
+        
+        public JobHandle DoForceJob()
+        {
+            
+        }
+        
+        public JobHandle DoConstraintJob()
+        {
+            
+        }
+        
         public void Step(float dt)
         {
         
