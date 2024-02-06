@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using PRope.Burst;
+using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
 
@@ -24,20 +25,25 @@ namespace PRope
         public float damping;
         public float stiffness;
 
-        public JobHandle DoPrepareJob()
-        {
-            
-        }
+        // public JobHandle DoPrepareJob()
+        // {
+        //     
+        // }
         
-        public JobHandle DoForceJob()
-        {
-            
-        }
+        // public JobHandle DoForceJob(float dt)
+        // {
+        //     var job = new ForceJob()
+        //     {
+        //         dt = dt
+        //     };
+        //
+        //     return job.Schedule();
+        // }
         
-        public JobHandle DoConstraintJob()
-        {
-            
-        }
+        // public JobHandle DoConstraintJob()
+        // {
+        //     
+        // }
         
         public void Step(float dt)
         {
